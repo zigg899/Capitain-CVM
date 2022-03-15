@@ -32,6 +32,14 @@ public class EnnemyPatrolSaut : MonoBehaviour
     /// </summary>
     private SpriteRenderer _sr;
 
+    [SerializeField, Range(0, 25)]
+    private float _vitesseMonte = 35f;
+
+    [SerializeField] 
+    private float _forceSaut = 300f;
+
+    private bool _vaSaute = false;
+
     // Start is called before the first frame update
     void Start()
     {
