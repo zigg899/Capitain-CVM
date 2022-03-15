@@ -6,24 +6,26 @@ using System.Timers;
 public class PlateformDeath : MonoBehaviour
 {
     [SerializeField]
-    
-
     private bool _estDessus = false;
 
+    private float _temps;
     
+
     // Start is called before the first frame update
     void Start()
     {
-         Timer timer = new Timer(500);
-        
+
+        _temps = 1f;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_estDessus== true)
+       if (_estDessus)
         {
+            
+            GameObject.Destroy(this.gameObject,_temps);
 
 
         }
@@ -32,7 +34,7 @@ public class PlateformDeath : MonoBehaviour
     private void FixedUpdate()
     {
         Collider2D[] _hitColliders = Physics2D.OverlapBoxAll(this.transform.position, this.transform.localScale * 3.8f, 0);
-        Transform playerTrouve = null;
+        
         for (int i = 0; i < _hitColliders.Length; i++)
             if (_hitColliders[i].CompareTag("Player"))
             {
@@ -41,6 +43,8 @@ public class PlateformDeath : MonoBehaviour
             }
 
         
+
+
     }
 
 

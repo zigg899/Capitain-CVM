@@ -152,9 +152,12 @@ public class PlayerMouvement : MonoBehaviour
     /// <param name="collision">Collider de l'autre GO</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _estAuSol = collision.gameObject.tag.Equals("Tilemap")
-            || collision.gameObject.tag.Equals("Plateform");
+        _estAuSol = collision.gameObject.tag.Equals("Tilemap") || collision.gameObject.tag.Equals("Plateform");
 
+        if (collision.gameObject.tag.Equals("Ennemy"))
+        {
+            _estAuSol = true;
+        }
         if (_enMonte && collision.gameObject.CompareTag("Tilemap"))
             OnAction();
     }
