@@ -102,6 +102,9 @@ public class PlayerData
             this._chestOpenList = ChestList;
     }
 
+    
+    
+    
     /// <summary>
     /// Diminue l'énergie du personnage
     /// </summary>
@@ -124,12 +127,18 @@ public class PlayerData
         this._vie--;
         this.UIPerteVie();
         if (this._vie <= 0)
-            this.Gameover();
+        {
+            this._vie = 4;
+            this._energie = 4;
+            this._score = 0;
+            GameManager.Instance.GameOver();
+        }
         else
         {
             this.IncrEnergie(MAX_ENERGIE);
             GameManager.Instance.RechargerNiveau();
-        }
+        }        
+        
     }
 
     /// <summary>
@@ -186,4 +195,6 @@ public class PlayerData
     {
         return this._chestOpenList.Contains(nom);
     }
+
+    
 }

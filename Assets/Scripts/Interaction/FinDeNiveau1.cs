@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FinDeNiveau : MonoBehaviour
+public class FinDeNiveau1 : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -9,7 +9,7 @@ public class FinDeNiveau : MonoBehaviour
         {
             Debug.Log("Félicitation, le niveau est terminé.");
             GameManager.Instance.SaveData();
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Level3");
         }
     }
 }

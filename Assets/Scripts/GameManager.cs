@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            this._playerData = new PlayerData(4, 2);
+            
             SaveData();
         }
     }
@@ -137,5 +137,15 @@ public class GameManager : MonoBehaviour
         GameObject.Find("Fondu").SetActive(false);
     }
 
+    public void GameOver()
+    {
+        this.PlayerData.UIPerteEnergie = null;
+        this.PlayerData.UIPerteVie = null;
+        SceneManager.LoadScene("MainMenu");
+        
+        
+        
+
+    }
     #endregion
 }
