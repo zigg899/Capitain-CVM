@@ -31,6 +31,9 @@ public class EnnemyPatrol : MonoBehaviour
     /// Référence vers le sprite Renderer
     /// </summary>
     private SpriteRenderer _sr;
+    private Vector3 newPosition;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -38,23 +41,47 @@ public class EnnemyPatrol : MonoBehaviour
         _sr = this.GetComponent<SpriteRenderer>();
         _indexPoint = 0;
         _cible = _points[_indexPoint];
-    }
+        newPosition = new Vector3(0, 0.05f, 0);
+    } 
 
     // Update is called once per frame
     void Update()
     {
         Vector3 direction = _cible.position - this.transform.position;
         this.transform.Translate(direction.normalized * _vitesse * Time.deltaTime, Space.World);
+        
 
         if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
         else if (direction.x > 0 && _sr.flipX) _sr.flipX = false;
-
+        
         if (Vector3.Distance(this.transform.position, _cible.position) < _distanceSeuil)
         {
             _indexPoint = (++_indexPoint) % _points.Length;
             _cible = _points[_indexPoint];
         }
+
+        if (_vitesse > 3)
+        {
+            //this.transform.position += newPosition;
+        }
+
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            _vitesse = 6f;
+            
+        }    
+
+        
+    }
+
+
+
+    
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

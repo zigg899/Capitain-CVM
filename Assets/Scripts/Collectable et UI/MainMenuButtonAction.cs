@@ -1,9 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class MainMenuButtonAction : MonoBehaviour
 {
+    public Button ButtonNiv2, ButtonNiv3;
+    public TextMeshProUGUI totCart,totCon;
+    
+    void Update()
+    {
+        if (GameManager.Instance.PlayerData.Level > 1)
+        {
+            ButtonNiv2.interactable = true;
+            ButtonNiv3.interactable = true;
+        }
+         totCart.text = GameManager.Instance.PlayerData.Cm.ToString();
+         totCon.text =  GameManager.Instance.PlayerData.Cc.ToString(); 
+            
+    } 
+    
+
+
+
+
+
+
     /// <summary>
     /// Permet d'afficher un panel transmis en paramètre
     /// </summary>
@@ -31,6 +52,8 @@ public class MainMenuButtonAction : MonoBehaviour
         SceneManager.LoadScene(nom);
     }
 
+
+
     /// <summary>
     /// Permet de fermer l'application
     /// </summary>
@@ -38,4 +61,6 @@ public class MainMenuButtonAction : MonoBehaviour
     {
         Application.Quit();
     }
-}
+
+}  
+

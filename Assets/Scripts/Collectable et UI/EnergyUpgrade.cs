@@ -21,6 +21,11 @@ public class EnergyUpgrade : MonoBehaviour
             GameManager.Instance
                 .PlayerData.IncrEnergie(this._regainEnergie);
             GameObject.Destroy(this.gameObject);
+            
+            GameManager.Instance.PlayerData.NbCarteMembre();
+
+
+            
         }
     }
 }

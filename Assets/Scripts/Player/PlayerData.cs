@@ -41,10 +41,14 @@ public class PlayerData
     /// Représente le score obtenu
     /// </summary>
     private int _score;
+    private int _level;
+    private int _carteDemembres;
+    private int _conventionCollectives;
     /// <summary>
     /// Liste des coffres ouverts dans le jeu
     /// </summary>
     private List<string> _chestOpenList;
+
     /// <summary>
     /// Représente le maximum d'énergie du personnage
     /// </summary>
@@ -68,10 +72,13 @@ public class PlayerData
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
+    public int Level { get { return this._level; } }
+    public int Cm { get { return this._carteDemembres; } }
+    public int Cc { get { return this._conventionCollectives; } }
 
     public PlayerData()
     {
-        this._vie = 0;
+        this._vie = 4;
         this._energie = 0;
         this._score = 0;
         this._volumeGeneral = 0;
@@ -81,12 +88,16 @@ public class PlayerData
         this.UIPerteVie = null;
         this.Gameover = null;
         this._chestOpenList = new List<string>();
+        this._level = 0;
+        this._carteDemembres = 0;
+        this._conventionCollectives = 0;
+
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null)
+        System.Action gameOver = null, List<string> ChestList = null,int level=0,int nbCm =0,int nbCc=0)
     {
         this._vie = vie;
         this._energie = energie;
@@ -100,9 +111,11 @@ public class PlayerData
         this._chestOpenList = new List<string>();
         if (ChestList != null)
             this._chestOpenList = ChestList;
-    }
+        this._level = level;
+        this._carteDemembres = nbCm;
+        this._conventionCollectives = nbCc;
 
-    
+    }
     
     
     /// <summary>
@@ -196,5 +209,18 @@ public class PlayerData
         return this._chestOpenList.Contains(nom);
     }
 
-    
+    public void NiveauFini(int gain = 1)
+    {
+       this._level += gain;
+    }
+
+    public void NbCarteMembre(int gain =1)
+    {
+        this._carteDemembres += gain;
+    }
+    public void NbConcention(int gain = 1)
+    {
+        this._conventionCollectives += gain;
+    }
+
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     private AudioManager _audioManager;
     public AudioManager AudioManager { get { return _audioManager; } }
+
+    
+
     #endregion
 
     #region Methods
@@ -43,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+         
+
         SaveData();
         SceneManager.activeSceneChanged += ChangementScene;
         ChangementScene(new Scene(), SceneManager.GetActiveScene());
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
     {
         _audioManager.StopAudio(0.3f);
         GameObject.Find("Fondu").SetActive(true);
+        this.PlayerData.NiveauFini();
         SceneManager.LoadScene(nomScene);
     }
 
@@ -141,11 +149,12 @@ public class GameManager : MonoBehaviour
     {
         this.PlayerData.UIPerteEnergie = null;
         this.PlayerData.UIPerteVie = null;
+        
         SceneManager.LoadScene("MainMenu");
-        
-        
-        
+    }    
+      
+     
 
-    }
+    
     #endregion
 }
